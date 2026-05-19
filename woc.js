@@ -1,1 +1,161 @@
-const connectors={nacs:{art:'N',name:'NACS',fullname:'North American Charging Standard',summary:'NACS is Tesla’s connector design and an emerging charging standard in North America.',region:'North America',type:'AC + DC',power:'Up to 250kW+ DC fast charging',vehicles:'Tesla Model S, 3, X, Y; Ford/Rivian/GM with adapters or native support',fact:'NACS helped shift the North American connector conversation toward broader standardization.'},ccs1:{art:'C1',name:'CCS1',fullname:'Combined Charging System Type 1',summary:'CCS1 combines AC and DC charging in one connector style and is common across North American fast charging.',region:'North America',type:'AC + DC',power:'Commonly 50kW–350kW DC fast charging',vehicles:'Ford Mustang Mach-E, Rivian, Chevy Bolt, Hyundai IONIQ 5, BMW i4, and more',fact:'CCS1 builds on the J1772 shape by adding two larger DC pins below the AC section.'},ccs2:{art:'C2',name:'CCS2',fullname:'Combined Charging System Type 2',summary:'CCS2 is widely used across Europe and supports both AC and DC fast charging.',region:'Europe and other global markets',type:'AC + DC',power:'Commonly 50kW–350kW DC fast charging',vehicles:'Volkswagen ID series, BMW, Mercedes-Benz, Hyundai/Kia, and many European EVs',fact:'CCS2 extends the Type 2 connector format with additional DC pins for fast charging.'},chademo:{art:'CH',name:'CHAdeMO',fullname:'CHArge de MOve',summary:'CHAdeMO is an early DC fast charging standard developed in Japan and found on many legacy EVs.',region:'Japan, North America, Europe, legacy networks',type:'DC fast charging',power:'Often 50kW; higher versions exist',vehicles:'Nissan LEAF, Mitsubishi Outlander PHEV, and some older EV models',fact:'CHAdeMO played an important role in early fast charging infrastructure before CCS and NACS grew.'},gbt:{art:'GB',name:'GB/T',fullname:'Chinese National Charging Standard',summary:'GB/T is the major EV charging connector standard used in China, the world’s largest EV market.',region:'China',type:'AC and DC standards exist',power:'Varies by AC/DC application',vehicles:'BYD, SAIC, Geely, NIO, XPeng, and many China-market EVs',fact:'GB/T helps show why connector literacy needs a global lens, not just a North American one.'},j1772:{art:'T1',name:'Type 1 / J1772',fullname:'SAE J1772 AC Connector',summary:'J1772 is a common AC charging connector used for Level 1 and Level 2 charging in North America.',region:'North America',type:'AC charging',power:'Level 1 and Level 2 AC charging',vehicles:'Many non-Tesla EVs and plug-in hybrids in North America',fact:'J1772 is often what people encounter first when they learn about home or workplace charging.'},type2:{art:'T2',name:'Type 2',fullname:'Mennekes Connector',summary:'Type 2 is the common AC charging connector across Europe and many other markets.',region:'Europe and other global markets',type:'AC charging',power:'Single-phase or three-phase AC charging',vehicles:'Many European EVs and global models',fact:'Type 2 is important for understanding how regional electrical systems shape charging design.'}};const buttons=document.querySelectorAll('.connector');const fields={art:document.getElementById('passport-art'),introName:document.getElementById('intro-name'),introDesc:document.getElementById('intro-desc'),name:document.getElementById('connector-name'),fullname:document.getElementById('connector-fullname'),summary:document.getElementById('connector-summary'),region:document.getElementById('connector-region'),type:document.getElementById('connector-type'),power:document.getElementById('connector-power'),vehicles:document.getElementById('connector-vehicles'),fact:document.getElementById('connector-fact')};function selectConnector(key){const data=connectors[key];fields.art.textContent=data.art;fields.introName.textContent=data.name;fields.introDesc.textContent=data.summary;fields.name.textContent=data.name;fields.fullname.textContent=data.fullname;fields.summary.textContent=data.summary;fields.region.textContent=data.region;fields.type.textContent=data.type;fields.power.textContent=data.power;fields.vehicles.textContent=data.vehicles;fields.fact.textContent=data.fact;buttons.forEach(button=>button.classList.toggle('active',button.dataset.connector===key));}buttons.forEach(button=>button.addEventListener('click',()=>selectConnector(button.dataset.connector)));
+const connectors = {
+  j1772: {
+    visual: "T1",
+    name: "Type 1 (J1772)",
+    regionMain: "North America",
+    summary: "The Type 1 connector, also known as J1772, is the standard for AC Level 1 and Level 2 charging in North America.",
+    region: "North America",
+    regionNote: "Primarily used in the U.S. and Canada.",
+    type: "AC Level 1 & Level 2",
+    typeNote: "Not intended for DC fast charging.",
+    power: "Up to 7.4 kW (Level 2)",
+    powerNote: "120V Level 1 / 240V Level 2.",
+    vehicles: "Nissan LEAF, Chevy Bolt, older Ford, Toyota Prius Prime, and more",
+    facts: [
+      "5-pin connector: 2 power, 1 ground, 2 communication.",
+      "Used for home, workplace, and public AC charging.",
+      "Often paired with CCS1 for DC fast charging."
+    ]
+  },
+  nacs: {
+    visual: "N",
+    name: "NACS",
+    regionMain: "North America",
+    summary: "NACS is Tesla’s connector design and an emerging standard across North American charging networks.",
+    region: "North America",
+    regionNote: "Used widely by Tesla and expanding across North America.",
+    type: "AC + DC Fast Charging",
+    typeNote: "Supports both everyday charging and fast charging.",
+    power: "Up to 250 kW+",
+    powerNote: "Power varies by vehicle and charging station.",
+    vehicles: "Tesla Model S, 3, X, Y; Ford, Rivian, GM, and others adopting NACS",
+    facts: [
+      "Compact connector compared with many other fast charging designs.",
+      "NACS adoption accelerated across North America after major automaker announcements.",
+      "Adapters and native ports are both part of the transition period."
+    ]
+  },
+  ccs1: {
+    visual: "C1",
+    name: "CCS1",
+    regionMain: "North America",
+    summary: "CCS1 combines the J1772 AC connector with two added DC pins for fast charging.",
+    region: "North America",
+    regionNote: "Common across many public DC fast charging stations.",
+    type: "AC + DC Fast Charging",
+    typeNote: "Supports AC charging and DC fast charging.",
+    power: "50 kW – 350 kW",
+    powerNote: "Higher power depends on charger and vehicle capability.",
+    vehicles: "Ford Mustang Mach-E, Rivian, Chevy Bolt, Hyundai IONIQ 5, BMW i4, and more",
+    facts: [
+      "CCS stands for Combined Charging System.",
+      "The lower two pins are used for DC fast charging.",
+      "It has been a major North American non-Tesla DC fast charging connector."
+    ]
+  },
+  ccs2: {
+    visual: "C2",
+    name: "CCS2",
+    regionMain: "Europe",
+    summary: "CCS2 combines the Type 2 connector format with additional DC pins for fast charging.",
+    region: "Europe and global markets",
+    regionNote: "Widely used across Europe and several other markets.",
+    type: "AC + DC Fast Charging",
+    typeNote: "Supports AC and DC charging.",
+    power: "50 kW – 350 kW",
+    powerNote: "Depends on site and vehicle capability.",
+    vehicles: "Volkswagen ID series, BMW, Mercedes-Benz, Hyundai/Kia, and many European EVs",
+    facts: [
+      "CCS2 is closely tied to Europe’s Type 2 AC charging ecosystem.",
+      "It is one of the most important global DC fast charging standards.",
+      "It helps show why connector education needs a global lens."
+    ]
+  },
+  chademo: {
+    visual: "CH",
+    name: "CHAdeMO",
+    regionMain: "Japan",
+    summary: "CHAdeMO is an early DC fast charging standard developed in Japan and used by several legacy EV models.",
+    region: "Japan and legacy global networks",
+    regionNote: "Still found on some older public chargers.",
+    type: "DC Fast Charging",
+    typeNote: "Primarily used for DC fast charging.",
+    power: "Often 50 kW",
+    powerNote: "Higher versions exist, but many public units are lower power.",
+    vehicles: "Nissan LEAF, Mitsubishi Outlander PHEV, and some older EVs",
+    facts: [
+      "CHAdeMO was one of the earliest widely deployed DC fast charging systems.",
+      "It is declining in many markets but still matters for legacy education.",
+      "It is important for understanding how charging standards evolve over time."
+    ]
+  },
+  gbt: {
+    visual: "GB",
+    name: "GB/T",
+    regionMain: "China",
+    summary: "GB/T is the major EV charging connector standard used in China, the world’s largest EV market.",
+    region: "China",
+    regionNote: "Used across China’s EV charging ecosystem.",
+    type: "AC and DC standards exist",
+    typeNote: "GB/T includes both AC and DC connector standards.",
+    power: "Varies by application",
+    powerNote: "Power depends on AC/DC use case and infrastructure.",
+    vehicles: "BYD, SAIC, Geely, NIO, XPeng, and many China-market EVs",
+    facts: [
+      "GB/T shows why EV infrastructure education must be global.",
+      "China’s EV market makes this connector family highly significant.",
+      "It is a key standard for understanding international EV adoption."
+    ]
+  },
+  type2: {
+    visual: "T2",
+    name: "Type 2 (Mennekes)",
+    regionMain: "Europe",
+    summary: "Type 2 is the common AC charging connector across Europe and many other markets.",
+    region: "Europe and global markets",
+    regionNote: "Common across European public and private AC charging.",
+    type: "AC Charging",
+    typeNote: "Supports single-phase and three-phase AC charging.",
+    power: "Varies by AC setup",
+    powerNote: "Can support higher AC power where three-phase power is available.",
+    vehicles: "Many European EVs and global models",
+    facts: [
+      "Type 2 is also known as the Mennekes connector.",
+      "It is central to Europe’s AC charging ecosystem.",
+      "Regional electrical systems influence connector design."
+    ]
+  }
+};
+
+const nodes = document.querySelectorAll(".node");
+
+function updateConnector(key) {
+  const data = connectors[key];
+  document.getElementById("visual").textContent = data.visual;
+  document.getElementById("name").textContent = data.name;
+  document.getElementById("region-main").textContent = data.regionMain;
+  document.getElementById("summary").textContent = data.summary;
+  document.getElementById("region").textContent = data.region;
+  document.getElementById("region-note").textContent = data.regionNote;
+  document.getElementById("type").textContent = data.type;
+  document.getElementById("type-note").textContent = data.typeNote;
+  document.getElementById("power").textContent = data.power;
+  document.getElementById("power-note").textContent = data.powerNote;
+  document.getElementById("vehicles").textContent = data.vehicles;
+
+  const facts = document.getElementById("facts");
+  facts.innerHTML = "";
+  data.facts.forEach((fact) => {
+    const li = document.createElement("li");
+    li.textContent = fact;
+    facts.appendChild(li);
+  });
+
+  nodes.forEach((node) => {
+    node.classList.toggle("active", node.dataset.connector === key);
+  });
+}
+
+nodes.forEach((node) => {
+  node.addEventListener("click", () => updateConnector(node.dataset.connector));
+});
