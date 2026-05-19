@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wheel of Connectors | Electra’s Corner</title>
+  <meta name="description" content="Explore EV charging connectors through Electra’s Corner’s interactive Wheel of Connectors learning tool." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="woc.css" />
+</head>
+<body>
+  <header class="woc-header">
+    <a class="brand" href="index.html" aria-label="Electra’s Corner home">
+      <img src="ec-logo.png" alt="Electra’s Corner logo" />
+      <div>
+        <strong>Electra’s Corner</strong>
+        <span>Educate. Connect. Empower.</span>
+      </div>
+    </a>
+    <nav class="woc-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#what">What We Do</a>
+      <a href="index.html#g2p">G2P Framework</a>
+      <a href="wheel-of-connectors.html" class="active">Wheel of Connectors</a>
+      <a href="index.html#connect" class="nav-button">Connect</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">/ G2P Learning Tool</p>
+        <h1>Wheel of <span>Connectors</span></h1>
+        <p>Explore the EV charging connectors shaping mobility around the world. Click a connector to reveal its passport.</p>
+        <div class="hero-actions">
+          <a href="#wheel" class="button primary">Start Exploring</a>
+          <a href="#how-it-works" class="button secondary">How It Works</a>
+        </div>
+        <p class="micro">⚡ Infrastructure literacy. Workforce pathways. Community impact.</p>
+      </div>
+      <div class="intro-card">
+        <p class="card-label">Connector Passport</p>
+        <h2 id="intro-name">NACS</h2>
+        <p id="intro-desc">A quick snapshot of region, charging type, common vehicles, and fun facts.</p>
+      </div>
+    </section>
+
+    <section id="wheel" class="wheel-section">
+      <div class="wheel-wrap" aria-label="Interactive wheel of EV connectors">
+        <div class="wheel-center"><span>Click a</span><strong>connector</strong><span>to learn</span></div>
+        <button class="connector active" data-connector="nacs" style="--angle: 0deg;"><span class="connector-icon">N</span><strong>NACS</strong></button>
+        <button class="connector" data-connector="ccs1" style="--angle: 51deg;"><span class="connector-icon">C1</span><strong>CCS1</strong></button>
+        <button class="connector" data-connector="ccs2" style="--angle: 102deg;"><span class="connector-icon">C2</span><strong>CCS2</strong></button>
+        <button class="connector" data-connector="chademo" style="--angle: 153deg;"><span class="connector-icon">CH</span><strong>CHAdeMO</strong></button>
+        <button class="connector" data-connector="gbt" style="--angle: 204deg;"><span class="connector-icon">GB</span><strong>GB/T</strong></button>
+        <button class="connector" data-connector="j1772" style="--angle: 255deg;"><span class="connector-icon">T1</span><strong>Type 1</strong></button>
+        <button class="connector" data-connector="type2" style="--angle: 306deg;"><span class="connector-icon">T2</span><strong>Type 2</strong></button>
+      </div>
+
+      <aside class="passport" aria-live="polite">
+        <div class="passport-top">
+          <span class="badge">Selected Connector</span>
+          <div class="passport-art" id="passport-art">N</div>
+        </div>
+        <h2 id="connector-name">NACS</h2>
+        <p class="subtitle" id="connector-fullname">North American Charging Standard</p>
+        <p id="connector-summary">NACS is Tesla’s connector design and an emerging charging standard in North America.</p>
+        <div class="fact-grid">
+          <div><span>Region</span><strong id="connector-region">North America</strong></div>
+          <div><span>Charging Type</span><strong id="connector-type">AC + DC</strong></div>
+          <div><span>Power Range</span><strong id="connector-power">Up to 250kW+ DC fast charging</strong></div>
+          <div><span>Common Vehicles</span><strong id="connector-vehicles">Tesla Model S, 3, X, Y; Ford/Rivian/GM with adapters or native support</strong></div>
+        </div>
+        <div class="fun-fact">
+          <span>Fun Fact</span>
+          <p id="connector-fact">NACS helped shift the North American connector conversation toward broader standardization.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="how-it-works" class="how">
+      <p class="kicker">/ How It Works</p>
+      <div class="steps">
+        <article><span>01</span><h3>Explore</h3><p>Browse the connectors on the wheel.</p></article>
+        <article><span>02</span><h3>Select</h3><p>Click or tap a connector to open its passport.</p></article>
+        <article><span>03</span><h3>Learn</h3><p>Review regions, charging type, vehicles, and key facts.</p></article>
+        <article><span>04</span><h3>Apply</h3><p>Build infrastructure literacy one connector at a time.</p></article>
+      </div>
+    </section>
+
+    <section class="guide">
+      <div>
+        <p class="kicker">/ Coming Next</p>
+        <h2>Each connector has a story.</h2>
+        <p>This V0 is the first version of the Wheel of Connectors. Over time, Electra’s Corner will expand this into deeper connector profiles, visuals, quizzes, and learning guides.</p>
+      </div>
+      <a href="index.html#g2p" class="button primary">Back to G2P</a>
+    </section>
+  </main>
+
+  <script src="woc.js"></script>
+</body>
+</html>
